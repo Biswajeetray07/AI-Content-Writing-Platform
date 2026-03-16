@@ -1,0 +1,23 @@
+# Docker Compose — Local Development (Optional)
+#
+# NOTE: The primary database is Supabase (cloud).
+# This local Postgres is only needed if you want to develop
+# offline or test with a local database.
+#
+# To use: docker compose up -d
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: ai_content_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ai_content_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
